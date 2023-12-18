@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org%22%3E/">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla de productos - Adrián Costa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <a th:href="@{/producto/crear}">Añadir nuevo producto al inventario</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Desperfecto</th>
+            <th>Tipo de producto</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="producto:${listaProductos}">
+            <td th:text="${producto.id}"></td>
+            <td th:text="${producto.nombre}"></td>
+            <td th:text="${producto.marca}"></td>
+            <td th:text="${producto.desperfecto}"></td>
+            <td th:text="${producto.tipoProducto}"></td>
+            <td>
+                <a th:href="'/producto/modificar/' + ${producto.id}">Modificar</a>
+                <a th:href="'/producto/eliminar/' + ${producto.id}">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

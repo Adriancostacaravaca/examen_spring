@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Añadir nuevo producto al inventario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${producto.id != null} ? @{'Modificar'} : @{'Añadir'}"></h1>
+    <form action="" method="post"
+          th:action="${producto.id != null} ? @{/producto/modificar/submit} : @{/producto/crear/submit}"
+          th:object="${producto}">
+        <div class="mb-3">
+            <input type="hidden" th:field="*{id}">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" required>
+        </div>
+        <div class="mb-3">
+            <label for="marca" class="form-label">Marca</label>
+            <input type="text" class="form-control" id="marca" name="marca" th:field="*{marca}" required>
+        </div>
+        <div class="mb-3">
+            <label for="desperfecto" class="form-label">Desperfecto</label>
+            <textarea name="desperfecto" class="form-control" id="desperfecto" th:field="*{desperfecto}"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="tipoProducto" class="form-label">Tipo de producto</label>
+            <select id="tipoProducto" name="tipoProducto" th:field="*{tipoProducto}">
+                <option value="Cámara">Cámara</option>
+                <option value="Foco">Foco</option>
+                <option value="Micrófono">Micrófono</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
